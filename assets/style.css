@@ -1,7 +1,12 @@
 .bg-title-color {
     background-color: rgb(96, 84, 201);
-};
-
-li {
-    font-size: 40px;
 }
+
+li{
+    font-size: 20px;
+    background-color: rgba(61, 59, 61, 0.509);
+    margin: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
