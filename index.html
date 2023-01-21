@@ -8,22 +8,32 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
-    <header>
-        <h1>Weather Dashboard</h1>
+    <header class="container-fluid text-center m-5">
+        <h1 >Weather Dashboard</h1>
     </header>
-    <aside>
-        <h2>Search for a City:</h2>
-        <textarea id="city"></textarea><br>
-        <button id="search">Search</button>
-        <ul id="citiesList"></ul>
-    </aside>
-    <div id="currentInfo"></div>
-    <div id="forecast">
-        <div id="day-1"></div>
-        <div id="day-2"></div>
-        <div id="day-3"></div>
-        <div id="day-4"></div>
-        <div id="day-5"></div>
-    </div>
+    <section class="container-fluid row justify-content-between">
+        <div class="card col-12 col-md-3">
+            <h2>Search for a City:</h2>
+            <textarea id="city"></textarea><br>
+            <button id="search">Search</button>
+            <ul id="citiesList">
+                <li>t</li>
+                <li>t</li>
+                <li>t</li>
+                <li>t</li>
+            </ul>
+        </div>
+        <div class=" row card col-12 col-md-9">
+            <div id="currentInfo" class="card col-12"><h2>Today</h2></div>
+            <div id="forecast" class=" row justify-content-between">
+                <h2>5-Day Forecast</h2>
+                <div id="day-1" class="card col-12 col-md-2"><h3>Day 1</h3></div>
+                <div id="day-2" class="card col-12 col-md-2"><h3>Day 2</h3></div>
+                <div id="day-3" class="card col-12 col-md-2"><h3>Day 3</h3></div>
+                <div id="day-4" class="card col-12 col-md-2"><h3>Day 4</h3></div>
+                <div id="day-5" class="card col-12 col-md-2"><h3>Day 5</h3></div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
