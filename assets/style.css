@@ -16,3 +16,13 @@ li{
     font-size: 20px;
 }
 
+.btn {
+    background-color: rgb(126, 151, 205);
+    color: white;
+    font-size: 20px;
+}
+
+.btn:hover {
+    background-color: rgb(82, 109, 166);
+}
+
