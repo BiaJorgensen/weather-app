@@ -71,8 +71,16 @@ function getForecast() {
         .then(function(data) {
             if(dayjs().isSame(data.list[0].dt_txt, 'day')) {
                 console.log('is the same');
+                const newDay = (dayjs().add(1, 'day').format('YYYY-MM-DD') + ' 12:00:00');
+                console.log(newDay);
+                
+                
             }
-console.log(data);
+            else {console.log('not the same');}
+
+            
+            
+            
 
 
         })
