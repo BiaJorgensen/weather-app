@@ -74,10 +74,10 @@ function getCoord() {
         })
         .then(function (data) {
             console.log(data);
-            // $('#day-1').append('<h3>' + dayjs.unix(data.daily[1].dt).format('MM/DD/YY') + '</h3>');
-            appendForecastInfo(1, 1)
+           
+            
             for (let i = 1; i<=5; i++) {
-               
+                appendForecastInfo(i, i)
                 console.log(dayjs.unix(data.daily[i].dt).format('MM/DD/YY'));
                 console.log(data.daily[i].weather[0].icon);
                 console.log(data.daily[i].temp.day + '°F');
