@@ -41,7 +41,7 @@ function getCurrentWeather() {
           
             console.log(data.name);
             $('#currentDayInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
-            $('#currentInfo').append("<img src='"+ iconURL + "'></img>")
+            $('#currentDayInfo').append("<img src='"+ iconURL + "'></img>")
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
