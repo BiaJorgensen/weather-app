@@ -12,11 +12,11 @@ $(function() {
         removeAppend()
         const city = $('#citySearch').val();
         localStorage.setItem('city', JSON.stringify(city));
-        const testCity = JSON.parse(localStorage.getItem('city'))
-        if (testCity) {
-            console.log(testCity);
+        const getCity = JSON.parse(localStorage.getItem('city'))
+        if (getCity) {
+            console.log(getCity);
             getCurrentWeather();
-            // getCurrentDayCity()
+            
         }
         else {
             console.log('false');
@@ -38,7 +38,8 @@ function getCurrentWeather() {
             console.log(data);
           
             console.log(data.name);
-            $('#currentInfo').append('<h2>' + data.name+ ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+            $('#currentInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+            $('#currentInfo').append(`<img src='http://openweathermap.org/img/wn/10d@2x.png'>`)
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
