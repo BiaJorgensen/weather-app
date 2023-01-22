@@ -33,7 +33,12 @@ function getCurrentWeather() {
             return response.json();
         })
         .then(function (data) {
+            console.log(data.main.temp);
+            console.log(data.wind.speed);
+            console.log(data.main.humidity);
             console.log(data);
+            
+            
           });
 }
 
