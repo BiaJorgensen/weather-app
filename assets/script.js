@@ -16,7 +16,8 @@ $(function() {
         if (getCity) {
             console.log(getCity);
             getCurrentWeather();
-            getForecast()
+            getForecast();
+            getCoord()
             
         }
         else {
@@ -40,11 +41,14 @@ function getCurrentWeather() {
                 name:data.name,
                 temp: data.main.temp,
                 wind: data.wind.speed,
-                humidity: data.main.humidity,
-                
+                humidity: data.main.humidity,   
             };
-            localStorage.setItem('searchedCity', JSON.stringify(searchedCity))
 
+            localStorage.setItem('searchedCity', JSON.stringify(searchedCity))
+            const lat = data.coord.lat;
+            localStorage.setItem('lat', JSON.stringify(lat))
+            const lon = data.coord.lon
+            localStorage.setItem('lon', JSON.stringify(lon))
 
 
             console.log(data);
@@ -58,6 +62,25 @@ function getCurrentWeather() {
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
           });
+}
+
+function getCoord() {
+    const lat = JSON.parse(localStorage.getItem('lat'));
+    const lon = JSON.parse(localStorage.getItem('lon'));
+    const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
+    fetch(oneCallForecastURL)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+
+            for (let i = 1; i<=5; i++) {
+                console.log(dayjs.unix(data.daily[i].dt).format('MM/DD/YY'));
+                console.log(data.daily[i].temp.day);
+            }
+
+        })
 }
 
 
