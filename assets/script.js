@@ -3,7 +3,7 @@ const APIKey = "f3590b94654981da9b8d1099d19b0979";
 
 
 $(function() {
-    
+    showSearchedCities() 
     $('#search').click(function (e) { 
         e.preventDefault();
         removeAppend()
@@ -36,19 +36,13 @@ function showCurrentWeather() {
             return response.json();
         })
         .then(function (data) {
-            
-
             const searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
-            
             searchedCities.push(data.name);
-            
-            localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
-
-            
             const lat = data.coord.lat;
-            localStorage.setItem('lat', JSON.stringify(lat))
             const lon = data.coord.lon
-            localStorage.setItem('lon', JSON.stringify(lon))
+            localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+            localStorage.setItem('lat', JSON.stringify(lat));
+            localStorage.setItem('lon', JSON.stringify(lon));
 
 
             console.log(data);
@@ -99,7 +93,15 @@ function showForecastWeather() {
         })
 }
 
+function showSearchedCities() {
 
+    const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
+    for (let i = 0; i < searchedCities.length; i++) {
+        $('#citiesList').append('<li>' + searchedCities[i] + '</li>')
+    }
+
+
+}
 
 
 function removeAppend() {
