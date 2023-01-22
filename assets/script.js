@@ -50,7 +50,7 @@ function getCurrentWeather() {
 
 
 function removeAppend() {
-    
-        $('#currentInfo').empty();
+    $('#currentDayInfo').empty();
+    $('#currentInfo').empty();
     
   }
