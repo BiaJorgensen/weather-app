@@ -74,16 +74,30 @@ function getCoord() {
         })
         .then(function (data) {
             console.log(data);
-
+            // $('#day-1').append('<h3>' + dayjs.unix(data.daily[1].dt).format('MM/DD/YY') + '</h3>');
+            appendForecastInfo(1, 1)
             for (let i = 1; i<=5; i++) {
+               
                 console.log(dayjs.unix(data.daily[i].dt).format('MM/DD/YY'));
+                console.log(data.daily[i].weather[0].icon);
                 console.log(data.daily[i].temp.day + '°F');
                 console.log(data.daily[i].wind_speed + ' MPH');
                 console.log(data.daily[i].humidity + ' %');
             }
-
+            function appendForecastInfo(id, index) {
+                const icon = data.daily[index].weather[0].icon
+                const iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+                
+                $('#day-' + id).append('<h3>' + dayjs.unix(data.daily[index].dt).format('MM/DD/YY') + '</h3>');
+                $('#day-' + id).append("<img src='"+ iconURL + "'></img>");
+                $('#day-' + id).append('<p>' + 'Temperature: ' + data.daily[index].temp.day + '°F' + '</p>');
+                $('#day-' + id).append('<p>' + 'Wind: ' + data.daily[index].wind_speed + ' MPH' + '</p>')
+                $('#day-' + id).append('<p>' + 'Humidity: ' + data.daily[index].humidity + ' %' + '</p>')
+            }
         })
 }
+
+
 
 
 function getForecast() {
