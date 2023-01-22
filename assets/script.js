@@ -33,12 +33,20 @@ function getCurrentWeather() {
             return response.json();
         })
         .then(function (data) {
-            console.log(data.main.temp);
-            console.log(data.wind.speed);
-            console.log(data.main.humidity);
+            // const currentTemp = data.main.temp;
+            // const currentWind = data.wind.speed;
+            // const currentHumidity = data.main.humidity
+
+            // console.log(currentTemp);
+            // console.log(currentWind);
+            // console.log(currentHumidity);
             console.log(data);
             
-            
+            $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
+            $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
+            $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
+
+
           });
 }
 
