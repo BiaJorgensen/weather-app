@@ -38,7 +38,7 @@ function getCurrentWeather() {
             console.log(data);
           
             console.log(data.name);
-            $('#currentInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+            $('#currentDayInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
             $('#currentInfo').append(`<img src='http://openweathermap.org/img/wn/10d@2x.png'>`)
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');

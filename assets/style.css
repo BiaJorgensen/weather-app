@@ -26,3 +26,12 @@ li{
     background-color: rgb(82, 109, 166);
 }
 
+img {
+    height: 70px;
+    width: 70px;
+   
+}
+
+.row {
+    padding: 0;
+}
