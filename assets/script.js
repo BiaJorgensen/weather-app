@@ -12,7 +12,7 @@ $(function() {
         const getCity = JSON.parse(localStorage.getItem('city'))
         if (getCity) {
             console.log(getCity);
-            getCurrentWeather();
+            showCurrentWeather();
            
             
             
@@ -26,7 +26,7 @@ $(function() {
     
 })
 
-function getCurrentWeather() {
+function showCurrentWeather() {
     const city = JSON.parse(localStorage.getItem('city'))
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
     fetch(queryURLcurrent)
@@ -41,7 +41,7 @@ function getCurrentWeather() {
                 humidity: data.main.humidity,   
             };
 
-            localStorage.setItem('searchedCity', JSON.stringify(searchedCity))
+            localStorage.setItem(data.name, JSON.stringify(searchedCity))
             const lat = data.coord.lat;
             localStorage.setItem('lat', JSON.stringify(lat))
             const lon = data.coord.lon
@@ -58,11 +58,11 @@ function getCurrentWeather() {
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
-            getCoord()
+            showForecastWeather()
           });
 }
 
-function getCoord() {
+function showForecastWeather() {
     const lat = JSON.parse(localStorage.getItem('lat'));
     const lon = JSON.parse(localStorage.getItem('lon'));
     const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
@@ -88,7 +88,7 @@ function getCoord() {
                 
                 $('#day-' + id).append('<h3>' + dayjs.unix(data.daily[index].dt).format('MM/DD/YY') + '</h3>');
                 $('#day-' + id).append("<img src='"+ iconURL + "'></img>");
-                $('#day-' + id).append('<p>' + 'Temperature: ' + data.daily[index].temp.day + '°F' + '</p>');
+                $('#day-' + id).append('<p>' + 'Temp: ' + data.daily[index].temp.day + '°F' + '</p>');
                 $('#day-' + id).append('<p>' + 'Wind: ' + data.daily[index].wind_speed + ' MPH' + '</p>');
                 $('#day-' + id).append('<p>' + 'Humidity: ' + data.daily[index].humidity + ' %' + '</p>');
             }
