@@ -16,7 +16,7 @@ $(function() {
         if (getCity) {
             console.log(getCity);
             getCurrentWeather();
-            getForecast();
+           
             getCoord()
             
         }
@@ -99,31 +99,6 @@ function getCoord() {
 
 
 
-
-function getForecast() {
-    const city = JSON.parse(localStorage.getItem('city'))
-    const queryURLforecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey
-    fetch(queryURLforecast)
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            if(dayjs().isSame(data.list[0].dt_txt, 'day')) {
-                console.log('is the same');
-                const newDay = (dayjs().add(1, 'day').format('YYYY-MM-DD') + ' 12:00:00');
-                console.log(newDay);
-                
-                
-            }
-            else {console.log('not the same');}
-
-            
-            
-            
-
-
-        })
-}
 
 function removeAppend() {
     $('#currentDayInfo').empty();
