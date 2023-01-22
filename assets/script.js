@@ -77,7 +77,9 @@ function getCoord() {
 
             for (let i = 1; i<=5; i++) {
                 console.log(dayjs.unix(data.daily[i].dt).format('MM/DD/YY'));
-                console.log(data.daily[i].temp.day);
+                console.log(data.daily[i].temp.day + '°F');
+                console.log(data.daily[i].wind_speed + ' MPH');
+                console.log(data.daily[i].humidity + ' %');
             }
 
         })
