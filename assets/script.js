@@ -3,18 +3,23 @@ const APIKey = "f3590b94654981da9b8d1099d19b0979";
 
 $(function() {
     
-    
+    function upFirstLetter(x) {
+
+        // converting first letter to uppercase
+        return x.charAt(0).toUpperCase() + x.slice(1);
+    }
     
     // const queryURLforecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey
     
     $('#search').click(function (e) { 
         e.preventDefault();
         const city = $('#citySearch').val();
-        localStorage.setItem('city', JSON.stringify(city));
+        localStorage.setItem('city', JSON.stringify(upFirstLetter(city)));
         const testCity = JSON.parse(localStorage.getItem('city'))
         if (testCity) {
             console.log(testCity);
-            getCurrentWeather()
+            getCurrentWeather();
+            getCurrentDayCity()
         }
         else {
             console.log('false');
@@ -50,4 +55,8 @@ function getCurrentWeather() {
           });
 }
 
+function getCurrentDayCity() {
+    const city = JSON.parse(localStorage.getItem('city'))
+    $('#currentInfo').append('<h2>' + city + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+}
 
