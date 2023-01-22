@@ -13,7 +13,7 @@ $(function() {
         if (getCity) {
             console.log(getCity);
             showCurrentWeather();
-           
+            
             
             
         }
@@ -26,6 +26,8 @@ $(function() {
     
 })
 
+
+
 function showCurrentWeather() {
     const city = JSON.parse(localStorage.getItem('city'))
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
@@ -34,14 +36,15 @@ function showCurrentWeather() {
             return response.json();
         })
         .then(function (data) {
-            const searchedCity = {
-                name:data.name,
-                temp: data.main.temp,
-                wind: data.wind.speed,
-                humidity: data.main.humidity,   
-            };
+            
 
-            localStorage.setItem(data.name, JSON.stringify(searchedCity))
+            const searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
+            
+            searchedCities.push(data.name);
+            
+            localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+
+            
             const lat = data.coord.lat;
             localStorage.setItem('lat', JSON.stringify(lat))
             const lon = data.coord.lon
@@ -58,7 +61,8 @@ function showCurrentWeather() {
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
-            showForecastWeather()
+            showForecastWeather();
+            
           });
 }
 
