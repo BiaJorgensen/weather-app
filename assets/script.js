@@ -3,9 +3,6 @@ const APIKey = "f3590b94654981da9b8d1099d19b0979";
 
 
 $(function() {
-   
-    
-    
     
     $('#search').click(function (e) { 
         e.preventDefault();
@@ -17,7 +14,7 @@ $(function() {
             console.log(getCity);
             getCurrentWeather();
            
-            getCoord()
+            
             
         }
         else {
@@ -61,6 +58,7 @@ function getCurrentWeather() {
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
+            getCoord()
           });
 }
 
@@ -91,8 +89,8 @@ function getCoord() {
                 $('#day-' + id).append('<h3>' + dayjs.unix(data.daily[index].dt).format('MM/DD/YY') + '</h3>');
                 $('#day-' + id).append("<img src='"+ iconURL + "'></img>");
                 $('#day-' + id).append('<p>' + 'Temperature: ' + data.daily[index].temp.day + '°F' + '</p>');
-                $('#day-' + id).append('<p>' + 'Wind: ' + data.daily[index].wind_speed + ' MPH' + '</p>')
-                $('#day-' + id).append('<p>' + 'Humidity: ' + data.daily[index].humidity + ' %' + '</p>')
+                $('#day-' + id).append('<p>' + 'Wind: ' + data.daily[index].wind_speed + ' MPH' + '</p>');
+                $('#day-' + id).append('<p>' + 'Humidity: ' + data.daily[index].humidity + ' %' + '</p>');
             }
         })
 }
