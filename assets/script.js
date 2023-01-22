@@ -101,4 +101,7 @@ function getCoord() {
 function removeAppend() {
     $('#currentDayInfo').empty();
     $('#currentInfo').empty();
+    for (let id = 1; id<=5; id++) {
+        $('#day-' + id).empty()
+    };
   }
