@@ -1,11 +1,11 @@
 
 const APIKey = "f3590b94654981da9b8d1099d19b0979";
-http://openweathermap.org/img/wn/10d@2x.png
+
 
 $(function() {
    
     
-    // const queryURLforecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey
+    
     
     $('#search').click(function (e) { 
         e.preventDefault();
@@ -16,6 +16,7 @@ $(function() {
         if (getCity) {
             console.log(getCity);
             getCurrentWeather();
+            getForecast()
             
         }
         else {
@@ -35,6 +36,17 @@ function getCurrentWeather() {
             return response.json();
         })
         .then(function (data) {
+            const searchedCity = {
+                name:data.name,
+                temp: data.main.temp,
+                wind: data.wind.speed,
+                humidity: data.main.humidity,
+                
+            };
+            localStorage.setItem('searchedCity', JSON.stringify(searchedCity))
+
+
+
             console.log(data);
             const icon = data.weather[0].icon
             const iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
@@ -49,8 +61,24 @@ function getCurrentWeather() {
 }
 
 
+function getForecast() {
+    const city = JSON.parse(localStorage.getItem('city'))
+    const queryURLforecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey
+    fetch(queryURLforecast)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if(dayjs().isSame(data.list[0].dt_txt, 'day')) {
+                console.log('is the same');
+            }
+console.log(data);
+
+
+        })
+}
+
 function removeAppend() {
     $('#currentDayInfo').empty();
     $('#currentInfo').empty();
-    
   }
