@@ -1,14 +1,9 @@
 
 const APIKey = "f3590b94654981da9b8d1099d19b0979";
+http://openweathermap.org/img/wn/10d@2x.png
 
 $(function() {
-    getCurrentDayCity();
-    getCurrentWeather()
-    function upFirstLetter(x) {
-       
-        // converting first letter to uppercase
-        return x.charAt(0).toUpperCase() + x.slice(1);
-    }
+   
     
     // const queryURLforecast = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + APIKey
     
@@ -16,12 +11,12 @@ $(function() {
         e.preventDefault();
         removeAppend()
         const city = $('#citySearch').val();
-        localStorage.setItem('city', JSON.stringify(upFirstLetter(city)));
+        localStorage.setItem('city', JSON.stringify(city));
         const testCity = JSON.parse(localStorage.getItem('city'))
         if (testCity) {
             console.log(testCity);
             getCurrentWeather();
-            getCurrentDayCity()
+            // getCurrentDayCity()
         }
         else {
             console.log('false');
@@ -41,16 +36,15 @@ function getCurrentWeather() {
         })
         .then(function (data) {
             console.log(data);
+          
+            console.log(data.name);
+            $('#currentInfo').append('<h2>' + data.name+ ' ' + dayjs().format('MM/DD/YY') + '</h2>');
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
           });
 }
 
-function getCurrentDayCity() {
-    const city = JSON.parse(localStorage.getItem('city'))
-    $('#currentInfo').append('<h2>' + city + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
-}
 
 function removeAppend() {
     
