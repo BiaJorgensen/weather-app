@@ -16,6 +16,10 @@ li{
     font-size: 20px;
 }
 
+#currentInfo p {
+    font-size: 20px;
+}
+
 .btn {
     background-color: rgb(126, 151, 205);
     color: white;
