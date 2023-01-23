@@ -43,7 +43,7 @@ function showCurrentWeather(city) {
     // Variable to hold the API link - link changes according to city name
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
     fetch(queryURLcurrent)
-    // Fetch URL's response
+        // Fetch URL's response
         .then(function(response) {
             // If status code is different than 200 (OK), goes back to initial page only showing search box, searched cities if any and an alert
             if (response.status !== 200) {
@@ -98,7 +98,7 @@ function showForecastWeather() {
     const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
     // Fetch URL's response
     fetch(oneCallForecastURL)
-    // Returns response in JSON format to extract data
+        // Returns response in JSON format to extract data
         .then(function(response) {
             return response.json();
         })
@@ -120,6 +120,7 @@ function showForecastWeather() {
             }
         })
 }
+
 // Shows searched cities on initial page if there are any
 function showSearchedCities() {
     const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
@@ -137,6 +138,7 @@ function removeAppend() {
     };
     $('#citiesList').empty()
   }
+  
 // Shows main page with current and forecast weather for searched city
   function showMainPage() {
     $('#mainPage').show()
