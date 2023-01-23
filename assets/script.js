@@ -98,7 +98,6 @@ function showForecastWeather() {
     const coord = JSON.parse(localStorage.getItem('coordinates'));
     // Variable to hold the API link - link changes according to coordinates
     const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + coord.lat + "&lon=" + coord.lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
-    console.log(oneCallForecastURL);
     // Fetch URL's response
     fetch(oneCallForecastURL)
         // Returns response in JSON format to extract data
