@@ -5,9 +5,9 @@ const APIKey = "f3590b94654981da9b8d1099d19b0979";
 $(function() {
     showSearchedCities() 
     $('#search').click(function (e) { 
-       
         e.preventDefault();
-        removeAppend()
+        showMainPage();
+        removeAppend();
         const city = $('#citySearch').val();
         // localStorage.setItem('city', JSON.stringify(city));
         // const getCity = JSON.parse(localStorage.getItem('city'))
@@ -26,6 +26,7 @@ $(function() {
     
         $(document).on('click', 'li', function(e){
             e.preventDefault; 
+            showMainPage()
             removeAppend();
             const city = $(this).text();
             console.log(city);
@@ -136,4 +137,8 @@ function removeAppend() {
         $('#day-' + id).empty()
     };
     $('#citiesList').empty()
+  }
+
+  function showMainPage() {
+    $('#mainPage').show()
   }
