@@ -1,19 +1,17 @@
-
+// Open Weather Map's API key
 const APIKey = "f3590b94654981da9b8d1099d19b0979";
 
-
+// Wrapping functions to only start after the document is ready
 $(function() {
-    showSearchedCities() 
+    showSearchedCities();
+    // Function is called when search button is clicked 
     $('#search').click(function (e) { 
         e.preventDefault();
         showMainPage();
         removeAppend();
         const city = $('#citySearch').val();
-        
-        // localStorage.setItem('city', JSON.stringify(city));
-        // const getCity = JSON.parse(localStorage.getItem('city'))
         if (city) {
-            // console.log(getCity);
+    
             showCurrentWeather(city);
             
             
@@ -41,14 +39,7 @@ $(function() {
 
 
         })
-        // $('li').click(function (e) { 
-        //     e.preventDefault; 
-        //     removeAppend();
-        //     const city = $(this).text();
-        //     console.log(city);
-        //     showCurrentWeather(city);
-    
-        // })
+       
 })
 
 
@@ -56,7 +47,7 @@ $(function() {
 
 
 function showCurrentWeather(city) {
-    // const city = JSON.parse(localStorage.getItem('city'))
+    
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
     fetch(queryURLcurrent)
         .then(function(response) {
@@ -132,7 +123,7 @@ function showForecastWeather() {
             }
         })
 }
-
+// Shows searched cities on initial page if there are any
 function showSearchedCities() {
     const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     for (let i = 0; i < searchedCities.length; i++) {
@@ -149,7 +140,7 @@ function removeAppend() {
     };
     $('#citiesList').empty()
   }
-
+// Shows main page with current and forecast weather for searched city
   function showMainPage() {
     $('#mainPage').show()
   }
