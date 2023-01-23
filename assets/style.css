@@ -33,8 +33,15 @@ img {
 
 .row {
     padding: 0;
+    margin: 5px;
 }
 
 #mainPage {
     display: none;
+    
+}
+
+#forecast div {
+    margin-bottom: 10px;
+   
 }

@@ -79,8 +79,8 @@ function showCurrentWeather(city) {
             const iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
           
             console.log(data.name);
-            $('#currentDayInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
-            $('#currentDayInfo').append("<img src='"+ iconURL + "'></img>")
+            $('#currentInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+            $('#currentInfo').append("<img src='"+ iconURL + "'></img>")
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
             $('#currentInfo').append('<p>' + 'Humidity: ' + data.main.humidity + ' %' + '</p>');
@@ -131,7 +131,7 @@ function showSearchedCities() {
 
 
 function removeAppend() {
-    $('#currentDayInfo').empty();
+    
     $('#currentInfo').empty();
     for (let id = 1; id<=5; id++) {
         $('#day-' + id).empty()
