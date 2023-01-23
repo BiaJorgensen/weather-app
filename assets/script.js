@@ -65,14 +65,17 @@ function showCurrentWeather(city) {
             if (!searchedCities.includes(data.name)) {
                 searchedCities.push(data.name)
             }
-            // Variables to hold coordinates of searched cities
-            const lat = data.coord.lat;
-            const lon = data.coord.lon;
+            // Variable to hold coordinates of searched cities
+            const coord = {
+                lat: data.coord.lat,
+                lon: data.coord.lon
+            }
             // Saving searcher cities and coordinates in local storage
             localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
-            showSearchedCities() 
-            localStorage.setItem('lat', JSON.stringify(lat));
-            localStorage.setItem('lon', JSON.stringify(lon));
+            showSearchedCities();
+            localStorage.setItem('coordinates', JSON.stringify(coord));
+            // localStorage.setItem('lat', JSON.stringify(lat));
+            // localStorage.setItem('lon', JSON.stringify(lon));
             // Variable to hold the code for the weather icon
             const icon = data.weather[0].icon
             // Variable to hold link to access png of weather icon
@@ -91,11 +94,11 @@ function showCurrentWeather(city) {
 
 // Function to show forecast weather
 function showForecastWeather() {
-    // Variables to get coordinates of searched city from local storage
-    const lat = JSON.parse(localStorage.getItem('lat'));
-    const lon = JSON.parse(localStorage.getItem('lon'));
+    // Variable to get coordinates of searched city from local storage
+    const coord = JSON.parse(localStorage.getItem('coordinates'));
     // Variable to hold the API link - link changes according to coordinates
-    const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + lat + "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
+    const oneCallForecastURL = "https://api.openweathermap.org/data/3.0/onecall?lat=" + coord.lat + "&lon=" + coord.lon + "&exclude=current,minutely,hourly,alerts&units=imperial" + "&appid=" + APIKey;
+    console.log(oneCallForecastURL);
     // Fetch URL's response
     fetch(oneCallForecastURL)
         // Returns response in JSON format to extract data
@@ -138,7 +141,7 @@ function removeAppend() {
     };
     $('#citiesList').empty()
   }
-  
+
 // Shows main page with current and forecast weather for searched city
   function showMainPage() {
     $('#mainPage').show()
