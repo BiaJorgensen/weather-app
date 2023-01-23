@@ -38,9 +38,11 @@ function showCurrentWeather() {
         .then(function (data) {
             const searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
             searchedCities.push(data.name);
+            
             const lat = data.coord.lat;
             const lon = data.coord.lon
             localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+            showSearchedCities() 
             localStorage.setItem('lat', JSON.stringify(lat));
             localStorage.setItem('lon', JSON.stringify(lon));
 
@@ -97,7 +99,7 @@ function showSearchedCities() {
 
     const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     for (let i = 0; i < searchedCities.length; i++) {
-        $('#citiesList').append('<li>' + searchedCities[i] + '</li>')
+        $('#citiesList').prepend('<li>' + searchedCities[i] + '</li>')
     }
 
 
@@ -110,4 +112,5 @@ function removeAppend() {
     for (let id = 1; id<=5; id++) {
         $('#day-' + id).empty()
     };
+    $('#citiesList').empty()
   }
