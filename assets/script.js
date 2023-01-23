@@ -22,18 +22,25 @@ $(function() {
         }
     });
     
-    $('li').each(function() {
-        $(this).click(function (e) { 
+        $(document).on('click', 'li', function(e){
             e.preventDefault; 
             removeAppend();
             const city = $(this).text();
             console.log(city);
             showCurrentWeather(city);
-    
+
+
         })
+        // $('li').click(function (e) { 
+        //     e.preventDefault; 
+        //     removeAppend();
+        //     const city = $(this).text();
+        //     console.log(city);
+        //     showCurrentWeather(city);
+    
+        // })
 
 
-    })  
    
 
 
