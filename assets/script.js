@@ -22,14 +22,19 @@ $(function() {
         }
     });
     
-    $('li').click(function (e) { 
-        e.preventDefault; 
-        removeAppend();
-        const city = $(this).text();
-        console.log(city);
-        showCurrentWeather(city);
+    $('li').each(function() {
+        $(this).click(function (e) { 
+            e.preventDefault; 
+            removeAppend();
+            const city = $(this).text();
+            console.log(city);
+            showCurrentWeather(city);
+    
+        })
 
-    })
+
+    })  
+   
 
 
 })
@@ -45,7 +50,10 @@ function showCurrentWeather(city) {
         })
         .then(function (data) {
             const searchedCities = JSON.parse(localStorage.getItem("searchedCities")) || [];
-            searchedCities.push(data.name);
+            if (!searchedCities.includes(data.name)) {
+                searchedCities.push(data.name)
+            }
+            
             
             const lat = data.coord.lat;
             const lon = data.coord.lon
