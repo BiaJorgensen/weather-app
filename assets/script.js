@@ -9,6 +9,7 @@ $(function() {
         showMainPage();
         removeAppend();
         const city = $('#citySearch').val();
+        
         // localStorage.setItem('city', JSON.stringify(city));
         // const getCity = JSON.parse(localStorage.getItem('city'))
         if (city) {
@@ -19,8 +20,13 @@ $(function() {
             
         }
         else {
-            showSearchedCities()
-            console.log('Not valid');
+            showSearchedCities();
+            $('#mainPage').hide();
+            $.alert({
+                title: 'City cannot be blank',
+                content: 'Please try again',
+            });
+           
         }
     });
     
@@ -43,12 +49,9 @@ $(function() {
         //     showCurrentWeather(city);
     
         // })
-
-
-   
-
-
 })
+
+
 
 
 
@@ -57,6 +60,14 @@ function showCurrentWeather(city) {
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
     fetch(queryURLcurrent)
         .then(function(response) {
+            if (response.status !== 200) {
+                $('#mainPage').hide();
+                showSearchedCities();
+                $.alert({
+                    title: 'City not recognized',
+                    content: 'Please try again',
+                });
+            }
             return response.json();
         })
         .then(function (data) {
