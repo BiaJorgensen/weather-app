@@ -82,7 +82,7 @@ function showCurrentWeather(city) {
             const iconURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png"
             // Creating, adding text and appending city's name with current day, icon that represents the weather, temperature,
             // wind speed and humidity to currentInfo div
-            $('#currentInfo').append('<h2>' + data.name + ' ' + dayjs().format('MM/DD/YY') + '</h2>');
+            $('#currentInfo').append('<h2>' + data.name + ' ' + dayjs.unix(data.dt).format('MM/DD/YY') + '</h2>');
             $('#currentInfo').append("<img src='"+ iconURL + "'></img>")
             $('#currentInfo').append('<p>' + 'Temperature: ' + data.main.temp + '°F' + '</p>');
             $('#currentInfo').append('<p>' + 'Wind: ' + data.wind.speed + ' MPH' + '</p>');
