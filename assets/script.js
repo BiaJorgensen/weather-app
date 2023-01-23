@@ -8,11 +8,11 @@ $(function() {
         e.preventDefault();
         removeAppend()
         const city = $('#citySearch').val();
-        localStorage.setItem('city', JSON.stringify(city));
-        const getCity = JSON.parse(localStorage.getItem('city'))
-        if (getCity) {
-            console.log(getCity);
-            showCurrentWeather();
+        // localStorage.setItem('city', JSON.stringify(city));
+        // const getCity = JSON.parse(localStorage.getItem('city'))
+        if (city) {
+            // console.log(getCity);
+            showCurrentWeather(city);
             
             
             
@@ -20,16 +20,24 @@ $(function() {
         else {
             console.log('false');
         }
-       
-    
     });
     
+    $('li').click(function (e) { 
+        e.preventDefault; 
+        removeAppend();
+        const city = $(this).text();
+        console.log(city);
+        showCurrentWeather(city);
+
+    })
+
+
 })
 
 
 
-function showCurrentWeather() {
-    const city = JSON.parse(localStorage.getItem('city'))
+function showCurrentWeather(city) {
+    // const city = JSON.parse(localStorage.getItem('city'))
     const queryURLcurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
     fetch(queryURLcurrent)
         .then(function(response) {
@@ -96,13 +104,10 @@ function showForecastWeather() {
 }
 
 function showSearchedCities() {
-
     const searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     for (let i = 0; i < searchedCities.length; i++) {
         $('#citiesList').prepend('<li>' + searchedCities[i] + '</li>')
     }
-
-
 }
 
 
