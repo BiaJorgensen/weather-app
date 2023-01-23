@@ -13,7 +13,7 @@ li{
 .bg-days-card {
     background-image: linear-gradient(rgb(178, 143, 226), rgb(47, 47, 126) ) ;
     color: white;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #currentInfo p {
