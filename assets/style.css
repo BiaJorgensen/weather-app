@@ -20,6 +20,7 @@ li{
     font-size: 20px;
 }
 
+/* Overrides Bootstrap .btn style for below styling */
 .btn {
     background-color: rgb(126, 151, 205);
     color: white;
@@ -30,22 +31,23 @@ li{
     background-color: rgb(82, 109, 166);
 }
 
+/* Changes sizing of weather icon that will be added via JS */
 img {
     height: 70px;
     width: 70px;
 }
 
+/* Overrides Bootstrap .row style for below styling */
 .row {
     padding: 0;
     margin: 5px;
 }
 
+/* Hides main page when the page is first loaded because there are no info to be shown */
 #mainPage {
-    display: none;
-    
+    display: none;   
 }
 
 #forecast div {
     margin-bottom: 10px;
-   
 }
