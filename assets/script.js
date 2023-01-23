@@ -5,6 +5,7 @@ const APIKey = "f3590b94654981da9b8d1099d19b0979";
 $(function() {
     showSearchedCities() 
     $('#search').click(function (e) { 
+       
         e.preventDefault();
         removeAppend()
         const city = $('#citySearch').val();
@@ -18,7 +19,8 @@ $(function() {
             
         }
         else {
-            console.log('false');
+            showSearchedCities()
+            console.log('Not valid');
         }
     });
     
@@ -28,6 +30,7 @@ $(function() {
             const city = $(this).text();
             console.log(city);
             showCurrentWeather(city);
+           
 
 
         })
