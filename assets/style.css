@@ -11,7 +11,7 @@ li{
 }
 
 .bg-days-card {
-    background-image: linear-gradient(rgb(47, 47, 126), rgb(178, 143, 226) ) ;
+    background-image: linear-gradient(rgb(178, 143, 226), rgb(47, 47, 126) ) ;
     color: white;
     font-size: 20px;
 }
